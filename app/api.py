@@ -14,25 +14,22 @@ parser.add_argument('b', type=int)
 
 class Methods(Resource):
     def get(self):
-        return {'double': 'doubles a thing',
-                "triple": "triples a thing"}
+        return {'double': "2x2",
+                "triple": "2x2x2",
+                "gcd":"greatest common denominator between two ints"}
 
 
 class double(Resource):
-
     def get(self):
         return 2 * 2
-
 
 class triple(Resource):
     def get(self):
         return 2 * 2 * 2
 
-
 class args_example(Resource):
     def get(self):
         return parser.parse_args()
-
 
 class gcd_endpoint(Resource):
     def get(self, implementation: str) -> dict:
@@ -60,24 +57,11 @@ class gcd_endpoint(Resource):
         else:
             return f"acceptable values are any int greater than 1, you passed {a} and {b}"
 
-
-# class gcd_endpoint_naive(Resource):
-#     def get(self):
-#         args = parser.parse_args()
-#         a, b = args['a'], args['b']
-#         if (a > 0) and (b > 0):
-#             return gcd.gcd_naive(a, b)
-#         else:
-#             return f"acceptable values are any int greater than 1, you passed {a} and {b}"
-
-
 api.add_resource(Methods, '/methods')
 api.add_resource(double, '/double')
 api.add_resource(triple, '/triple')
 api.add_resource(args_example, '/args')
 api.add_resource(gcd_endpoint, "/gcd/<string:implementation>")
-# api.add_resource(gcd_endpoint_naive, "/gcd_naive")
-
 
 if __name__ == '__main__':
     app.run("0.0.0.0", debug=False)
