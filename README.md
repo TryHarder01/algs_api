@@ -18,3 +18,5 @@ Here's an example endpoint.
 You can change between `/gcd/clever?` and `/gcd/naive?` to notice the difference in compute time for two approaches. 
 
 `http://localhost:5000/gcd/clever?a=555555&b=43224245`
+
+s
